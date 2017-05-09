@@ -26,8 +26,8 @@ if [ -z "$GIT_CRED" ]; then
 fi
 
 if [ ! -e "$GIT_CRED" ]; then
-    echo ".git-credentials file not found - please mount at ${GIT_CRED}"
-    exit 1
+    echo ".git-credentials file not found - if $REPO_URL is a public repo, this shouldn't be a problem"
+    echo "but if not, you will need to mount .git-credentials at ${GIT_CRED}"
 fi
 
 if [ -z "$MARKER_FILE" ]; then

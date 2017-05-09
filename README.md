@@ -4,12 +4,13 @@ Stay in sync with a git repo
 ## Variables
 
 - VERBOSE - enable more logging if set to 1
-- FREQUENCY - How often to check for changes (in seconds). Default is 300 seconds.
+- FREQUENCY - How often to check for changes (in seconds). Default is 300 seconds (5 minutes).
 - REPO_DIR - folder for the git repo (can be existing git repo folder, or empty, or non-existant)
 - REPO_URL - URL to the git repo to monitor
 - REPO_BRANCH - Branch to track. Default is master
 - GIT_CRED - path to .git-credentials file to use (defaults to /credentials/.git-credentials)
-  -- be sure to mount your git-credentials file to whatever path is specified here
+    - only required for private repos
+    - be sure to mount your git-credentials file to whatever path is specified here
 - MARKER_FILE - path to file to touch if changes are detected in the git repo, if not provided - no marker file created
 
 
