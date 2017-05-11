@@ -5,13 +5,7 @@ if [ "$VERBOSE" ]; then
     set -x
 fi
 
-# Check for required ENV Variables
-if [ -z "$REPO_DIR" ]; then
-    echo "Must supply a path to the repo directory by setting the REPO_DIR environment variable"
-    exit 1
-else
-    echo "Repo DIR set to $REPO_DIR"
-fi
+REPO_DIR=/repo-dir
 
 if [ -z "$REPO_URL" ]; then
     echo "Must supply the URL for the repo by setting the REPO_URL environment variable"
@@ -54,6 +48,8 @@ fi
 
 SETUP=0
 # Check to see if the repo dir exists and is a git repo
+# This would only be the case if someone mounted a local folder into the container
+# at /repo-dir
 if [ -e "$REPO_DIR" ]; then
     # directory exists
     if [ -e "$REPO_DIR/.git" ]; then
@@ -114,6 +110,7 @@ do
         current_head=$new_head
         # If a MARKER_FILE has been configured - touch it
         if [ ! -z "$MARKER_FILE" ]; then
+            mkdir -p `dirname $MARKER_FILE`
             touch ${MARKER_FILE}
         fi
     else
