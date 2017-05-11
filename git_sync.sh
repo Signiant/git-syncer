@@ -5,6 +5,11 @@ if [ "$VERBOSE" ]; then
     set -x
 fi
 
+if [ "$UMASK" ]; then
+    echo "setting given UMASK - all files and folder created will use a umask value of $UMASK"
+    umask $UMASK
+fi
+
 REPO_DIR=/repo-dir
 
 if [ -z "$REPO_URL" ]; then

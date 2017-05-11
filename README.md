@@ -4,6 +4,7 @@ Stay in sync with a git repo
 ## Variables
 
 - VERBOSE - enable more logging if set to 1
+- UMASK - optional UMASK value to use for new files/folders
 - FREQUENCY - How often to check for changes (in seconds). Default is 300 seconds (5 minutes).
 - REPO_URL - URL to the git repo to monitor
 - REPO_BRANCH - Branch to track. Default is master
@@ -19,12 +20,14 @@ Stay in sync with a git repo
 This example mounts the local folder 'mylocaldir/repo' into the container at '/repo-dir' for use as the Repo Folder.
 A .git-credentials file can be found in the local 'credentials-dir', so 'credentials-dir' is mounted at '/credentials'
 inside the container. The syncer will check the upstream repo (https://github.com/Signiant/git-syncer.git) every 10 
-minutes (600 seconds). No new marker file will be created if/when new changes are pulled down.
+minutes (600 seconds). Use a UMASK value of 000 for files and folders created. No new marker file will be created
+if/when new changes are pulled down.
 
 
 ````
 docker run -d   -e "FREQUENCY=600" \
  -e "VERBOSE=1" \
+ -e "UMASK=000" \
  -e "REPO_URL=https://github.com/Signiant/git-syncer.git \
  -v credentials-dir:/credentials \
  -v mylocaldir/repo:/repo-dir \
