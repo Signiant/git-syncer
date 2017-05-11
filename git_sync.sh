@@ -6,7 +6,7 @@ if [ "$VERBOSE" ]; then
 fi
 
 if [ "$UMASK" ]; then
-    echo "setting given UMASK - all files and folder created will use a umask value of $UMASK"
+    echo "setting given UMASK - all files and folders created will use a umask value of $UMASK"
     umask $UMASK
 fi
 
